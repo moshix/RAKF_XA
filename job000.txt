@@ -1,0 +1,18 @@
+//JOB000  JOB 1,'RAKF 1.2 FOR XA',CLASS=A,MSGCLASS=X                  
+//*                                                                   
+//* This job loads the initial install file from the tape
+//*                                                                   
+//C1      EXEC PGM=IEBCOPY                                            
+//SYSPRINT DD SYSOUT=*                                                
+//SYSUT3   DD UNIT=SYSDA,SPACE=(CYL,5)                                
+//SYSUT4   DD UNIT=SYSDA,SPACE=(CYL,5)                                
+//*                                                                   
+//SYSUT1   DD DSN=INSTALL,DISP=(OLD,KEEP),                            
+//            LABEL=(1,SL),                                           
+//            UNIT=TAPE,                                              
+//            VOL=(,RETAIN,SER=RAKFXA)                                
+//SYSUT2   DD DSN=RAKF.V1R2.XA.INSTALL,DISP=(NEW,CATLG),              
+//            UNIT=SYSDA,VOL=SER=MXACAT,SPACE=(TRK,(5,2,5)),          
+//            DCB=(BLKSIZE=6160,LRECL=80,RECFM=FB)                    
+//SYSIN    DD DUMMY                                                   
+//
